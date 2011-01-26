@@ -47,6 +47,10 @@ class TestRgeoip < Test::Unit::TestCase
     assert_equal("JP", rgeoip.country("202.12.27.33")[:code])
   end
 
+  def test_country_fix
+    assert_equal(nil, rgeoip.country("127.0.0.1"))
+  end
+
   def test_city
     assert_equal("Tokyo", rgeoip.city("m.root-servers.net")[:city])
     assert_equal("Tokyo", rgeoip.city("202.12.27.33")[:city])

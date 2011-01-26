@@ -204,6 +204,8 @@ gi_country(VALUE self, VALUE addr_or_host)
             return result;
         }
     }
+
+    return Qnil;
 }
 
 /*
