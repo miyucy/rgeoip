@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rgeoip}
-  s.version = "0.0.0"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["miyucy"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "ext/extconf.rb",
     "ext/rgeoip.c",
+    "rgeoip.gemspec",
     "test/helper.rb",
     "test/test_rgeoip.rb",
     "test/test_rgeoip_database.rb"
