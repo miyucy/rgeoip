@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rgeoip}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["miyucy"]
-  s.date = %q{2011-01-26}
+  s.date = %q{2011-02-18}
   s.description = %q{alternative libGeoIP binding for Ruby}
   s.email = %q{miyucy@gmail.com}
   s.extensions = ["ext/extconf.rb"]
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".gemtest",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -27,24 +28,28 @@ Gem::Specification.new do |s|
     "VERSION",
     "ext/extconf.rb",
     "ext/rgeoip.c",
+    "lib/rack/rgeoip.rb",
     "rgeoip.gemspec",
+    "test/data/GeoIP.dat",
+    "test/data/GeoLiteCity.dat",
     "test/helper.rb",
+    "test/test_rack_rgeoip_lookup.rb",
     "test/test_rgeoip.rb",
     "test/test_rgeoip_database.rb"
   ]
   s.homepage = %q{http://github.com/miyucy/rgeoip}
   s.licenses = ["LGPL"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.5.2}
   s.summary = %q{alternative libGeoIP binding for Ruby}
   s.test_files = [
     "test/helper.rb",
+    "test/test_rack_rgeoip_lookup.rb",
     "test/test_rgeoip.rb",
     "test/test_rgeoip_database.rb"
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
@@ -53,12 +58,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<ZenTest>, [">= 0"])
+      s.add_development_dependency(%q<rack>, [">= 0"])
     else
       s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<ZenTest>, [">= 0"])
+      s.add_dependency(%q<rack>, [">= 0"])
     end
   else
     s.add_dependency(%q<yard>, ["~> 0.6.0"])
@@ -66,6 +73,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<ZenTest>, [">= 0"])
+    s.add_dependency(%q<rack>, [">= 0"])
   end
 end
 
