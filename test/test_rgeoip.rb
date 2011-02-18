@@ -67,8 +67,8 @@ class TestRgeoip < Test::Unit::TestCase
 
   def paths
     {
-      :country => File.expand_path("../GeoIP.dat", File.dirname(__FILE__)),
-      :city    => File.expand_path("../GeoLiteCity.dat", File.dirname(__FILE__)),
+      :country => File.expand_path("data/GeoIP.dat", File.dirname(__FILE__)),
+      :city    => File.expand_path("data/GeoLiteCity.dat", File.dirname(__FILE__)),
     }
   end
 
