@@ -113,8 +113,6 @@ static VALUE
 gi_new(int argc, VALUE *argv, VALUE self)
 {
     Rgeoip      *gi;
-    VALUE     flags;
-    VALUE filenames;
     int           i;
 
     Data_Get_Struct(self, Rgeoip, gi);
@@ -294,7 +292,7 @@ gid_new(int argc, VALUE *argv, VALUE self)
 
     rb_scan_args(argc, argv, "11", &filename, &flags);
 
-    Check_Type(filename, T_STRING);
+    filename = StringValue(filename);
 
     gid->ptr = GeoIP_open(RSTRING_PTR(filename),
                           GEOIP_MEMORY_CACHE | GEOIP_CHECK_CACHE | GEOIP_MMAP_CACHE);

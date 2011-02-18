@@ -1,5 +1,6 @@
 require 'helper'
 require 'tempfile'
+require 'pathname'
 
 class TestRgeoip < Test::Unit::TestCase
   def test_constant
@@ -13,6 +14,12 @@ class TestRgeoip < Test::Unit::TestCase
   def test_open
     assert_nothing_raised {
       Rgeoip.new.open paths[:country]
+    }
+  end
+
+  def test_open_with_pathname
+    assert_nothing_raised {
+      Rgeoip.new.open Pathname.new(paths[:country])
     }
   end
 
