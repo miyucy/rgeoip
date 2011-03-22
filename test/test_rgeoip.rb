@@ -28,7 +28,7 @@ class TestRgeoip < Test::Unit::TestCase
       Rgeoip.new.open Tempfile.new("rgeoip").path
     }
 
-    assert_raise(TypeError) {
+    assert_raise(RuntimeError) {
       Rgeoip.new.open nil
     }
   end
@@ -44,7 +44,7 @@ class TestRgeoip < Test::Unit::TestCase
       Rgeoip.new.open [Tempfile.new("rgeoip").path, Tempfile.new("rgeoip").path]
     }
 
-    assert_raise(TypeError) {
+    assert_raise(RuntimeError) {
       Rgeoip.new.open [nil]
     }
   end

@@ -27,6 +27,7 @@ enum {
 
 static VALUE rb_cRgeoip, rb_cRgeoipDatabase;
 static VALUE rgeoip_symbols[RGEOIP_SYMBOLS_MAX];
+static ID    i_to_s;
 
 /* -------- */
 
@@ -292,7 +293,7 @@ gid_new(int argc, VALUE *argv, VALUE self)
 
     rb_scan_args(argc, argv, "11", &filename, &flags);
 
-    filename = StringValue(filename);
+    filename = rb_funcall(filename, i_to_s, 0);
 
     gid->ptr = GeoIP_open(RSTRING_PTR(filename),
                           GEOIP_MEMORY_CACHE | GEOIP_CHECK_CACHE | GEOIP_MMAP_CACHE);
@@ -493,4 +494,6 @@ Init_rgeoip(void)
     rgeoip_symbols[RS_LONGITUDE]   = ID2SYM(rb_intern("longitude"));
     rgeoip_symbols[RS_DMA_CODE]    = ID2SYM(rb_intern("dma_code"));
     rgeoip_symbols[RS_AREA_CODE]   = ID2SYM(rb_intern("area_code"));
+
+    i_to_s = rb_intern("to_s");
 }
