@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rgeoip}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["miyucy"]
-  s.date = %q{2011-02-18}
+  s.date = %q{2011-03-23}
   s.description = %q{alternative libGeoIP binding for Ruby}
   s.email = %q{miyucy@gmail.com}
   s.extensions = ["ext/extconf.rb"]
