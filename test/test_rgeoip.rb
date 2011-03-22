@@ -63,6 +63,46 @@ class TestRgeoip < Test::Unit::TestCase
     assert_equal("Tokyo", rgeoip.city("202.12.27.33")[:city])
   end
 
+  def test_get_encoding
+    assert_equal(Encoding, rgeoip.encoding.class)
+  end if defined? Encoding
+
+  def test_set_invalid_encoding
+    @rgeoip = rgeoip
+    encoding = @rgeoip.encoding
+
+    assert_raise(RuntimeError) {
+      @rgeoip.encoding = Encoding.find("Shift_JIS")
+    }
+    assert_raise(RuntimeError) {
+      @rgeoip.encoding = "Shift_JIS"
+    }
+
+    assert_equal(encoding, @rgeoip.encoding)
+  end if defined? Encoding
+
+  def test_set_encoding_iso_8859_1
+    @rgeoip = rgeoip
+    enc_iso8859_1 = Encoding.find("ISO-8859-1")
+
+    @rgeoip.encoding = "ISO-8859-1"
+    assert_equal(enc_iso8859_1, @rgeoip.encoding)
+
+    @rgeoip.encoding = enc_iso8859_1
+    assert_equal(enc_iso8859_1, @rgeoip.encoding)
+  end if defined? Encoding
+
+  def test_set_encoding_utf8
+    @rgeoip = rgeoip
+    enc_utf8 = Encoding.find("UTF-8")
+
+    @rgeoip.encoding = "UTF-8"
+    assert_equal(enc_utf8, @rgeoip.encoding)
+
+    @rgeoip.encoding = enc_utf8
+    assert_equal(enc_utf8, @rgeoip.encoding)
+  end if defined? Encoding
+
   private
 
   def paths

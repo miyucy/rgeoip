@@ -72,6 +72,68 @@ class TestRgeoipDatabase < Test::Unit::TestCase
     assert_equal(nil, city_db.city("1.2.3.4.5"))
   end
 
+  def test_get_encoding
+    assert_equal(Encoding, city_db.encoding.class)
+  end if defined? Encoding
+
+  def test_set_invalid_encoding
+    @city_db = city_db
+    encoding = @city_db.encoding
+
+    assert_raise(RuntimeError) {
+      @city_db.encoding = Encoding.find("Shift_JIS")
+    }
+
+    assert_raise(RuntimeError) {
+      @city_db.encoding = "Shift_JIS"
+    }
+
+    assert_equal(encoding, @city_db.encoding)
+  end if defined? Encoding
+
+  def test_set_encoding_utf8
+    @city_db = city_db
+    enc_utf8 = Encoding.find("UTF-8")
+
+    @city_db.encoding = "UTF-8"
+    assert_equal(enc_utf8, @city_db.encoding)
+
+    @city_db.encoding = enc_utf8
+    assert_equal(enc_utf8, @city_db.encoding)
+  end if defined? Encoding
+
+  def test_set_encoding_iso_8859_1
+    @city_db = city_db
+    enc_iso8859_1 = Encoding.find("ISO-8859-1")
+
+    @city_db.encoding = "ISO-8859-1"
+    assert_equal(enc_iso8859_1, @city_db.encoding)
+
+    @city_db.encoding = enc_iso8859_1
+    assert_equal(enc_iso8859_1, @city_db.encoding)
+  end if defined? Encoding
+
+  def test_encoding_utf8
+    @city_db = city_db
+    @city_db.encoding = "UTF-8"
+    assert_equal(@city_db.encoding, @city_db.city("m.root-servers.net")[:city].encoding)
+  end if defined? Encoding
+
+  def test_encoding_utf8
+    @city_db = city_db
+    @city_db.encoding = "ISO-8859-1"
+    assert_equal(@city_db.encoding, @city_db.city("m.root-servers.net")[:city].encoding)
+  end if defined? Encoding
+
+  def test_default_internal
+    di = Encoding.default_internal
+
+    Encoding.default_internal = "Shift_JIS"
+    assert_equal(Encoding.default_internal, city_db.city("m.root-servers.net")[:city].encoding)
+
+    Encoding.default_internal = di
+  end if defined? Encoding
+
   private
 
   def paths
