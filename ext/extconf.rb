@@ -1,5 +1,7 @@
 require "mkmf"
 
+dir_config "geoip", %w[/opt/local /usr/local /usr]
+
 have_header "GeoIP.h"
 have_header "GeoIPCity.h"
 
